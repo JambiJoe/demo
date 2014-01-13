@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+  <ui:composition template="/_Decorator.xhtml">
+	<ui:define name="title">#{i18n.createTitle} MyGoodProduct</ui:define>
+	<ui:define name="heading">#{i18n.createHeading}</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<p:panel id="createPnl" header="#{i18n.myGoodProduct}"
+				toggleable="true" closable="false" toggleSpeed="500"
+				onCloseUpdate="growl" closeSpeed="2000" onToggleUpdate="growl"
+				widgetVar="panel">
+				<h:panelGrid columns="3" cellpadding="10">
+
+	<p:outputLabel>#{i18n.myGoodProduct_productid} *</p:outputLabel>
+	<p:inputText 
+		size="10" maxlength="10" 
+		label="Productid" id="lblProductid-#{idValue}" value="#{myGoodProductController.myGoodProduct.productid}" required="true"/>
+	<p:message for="lblProductid-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodProduct_name} *</p:outputLabel>
+	<p:inputText 
+		size="25" maxlength="25" 
+		label="Name" id="lblName-#{idValue}" value="#{myGoodProductController.myGoodProduct.name}" required="true"/>
+	<p:message for="lblName-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodProduct_description} *</p:outputLabel>
+	<p:inputTextarea rows="5" cols="60" maxlength="255" width="255" 
+        counterTemplate="{0} characters remaining." autoResize="false"
+		label="Description" id="lblDescription-#{idValue}" value="#{myGoodProductController.myGoodProduct.description}" required="true"/>
+	<p:message for="lblDescription-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodProduct_imageurl}</p:outputLabel>
+	<p:inputText 
+		size="40" maxlength="55" 
+		label="Imageurl" id="lblImageurl-#{idValue}" value="#{myGoodProductController.myGoodProduct.imageurl}" required="false"/>
+	<p:message for="lblImageurl-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodProduct_categoryid} *</p:outputLabel>
+	<p:inputText 
+		size="10" maxlength="10" 
+		label="Categoryid" id="lblCategoryid-#{idValue}" value="#{myGoodProductController.myGoodProduct.categoryid}" required="true"/>
+	<p:message for="lblCategoryid-#{idValue}" />
+					<p:commandButton title="#{i18n.save}" value="#{i18n.save}" update="createPnl"
+						action="#{myGoodProductController.create}" />
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+  </ui:composition>
+</html><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlCreateEntity
+	 - file name : JSFXhtmlCreateEntity.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

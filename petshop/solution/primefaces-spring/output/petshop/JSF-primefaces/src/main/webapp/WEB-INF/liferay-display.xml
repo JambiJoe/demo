@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 4.0.0//EN" "http://www.liferay.com/dtd/liferay-display_4_0_0.dtd">
+<display>
+	<category name="minuteproject.petshop"> 
+	    <category name="CRUD Admin">
+		    <portlet id="Address" /> 
+		    <portlet id="Category" /> 
+		    <portlet id="Sellercontactinfo" /> 
+		    <portlet id="Tag" /> 
+		    <portlet id="TagItem" /> 
+		    <portlet id="Ziplocation" /> 
+		    <portlet id="MyGoodItem" /> 
+		    <portlet id="MyGoodProduct" /> 
+	    </category>
+
+        <!-- SDD -->
+	    <category name="Statement Driven Development">
+		    <portlet id="GetAddressAbstractIn" /> 
+		    <portlet id="GetAddressSummaryIn" /> 
+		    <portlet id="GetAddressesByCriteriaIn" /> 
+	    </category>
+	</category>
+</display><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : Liferay.display.xml
+	 - file name : Liferay.display.xml.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

@@ -1,0 +1,165 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/_Decorator.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{i18n.listTitle} of Address" />
+	</ui:define>
+	<ui:define name="heading">
+		<h:outputText value="#{i18n.listHeading}" />
+	</ui:define>
+<ui:define name="body">
+		
+ <h:form id="formAddress">  
+  
+    <p:dataTable var="address" value="#{addressController.findAll()}" paginator="true" rows="10"  
+                selection="#{addressController.selectedAddress}" selectionMode="single" rowKey="#{address}"
+                onRowSelectUpdate="display" onRowSelectComplete="addressDialog.show()" 
+                dynamic="true"  resizableColumns="true"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                rowsPerPageTemplate="5,10,15"> 
+        <f:facet name="header">  
+            List of #{i18n.addresss}  
+        </f:facet>  
+		<p:column style="width:16px">  
+			<p:rowToggler/>  
+		</p:column>
+        <p:column sortBy="#{address.street1}" filterBy="#{address.street1}">  
+            <f:facet name="header">  
+                <h:outputText value="#{i18n.address_street1}" />  
+            </f:facet>  
+            <h:outputText value="#{address.street1}" />  
+        </p:column>  
+        <p:column sortBy="#{address.street2}" filterBy="#{address.street2}">  
+            <f:facet name="header">  
+                <h:outputText value="#{i18n.address_street2}" />  
+            </f:facet>  
+            <h:outputText value="#{address.street2}" />  
+        </p:column>  
+        <p:column sortBy="#{address.city}" filterBy="#{address.city}">  
+            <f:facet name="header">  
+                <h:outputText value="#{i18n.address_city}" />  
+            </f:facet>  
+            <h:outputText value="#{address.city}" />  
+        </p:column>  
+        <p:column sortBy="#{address.state}" filterBy="#{address.state}">  
+            <f:facet name="header">  
+                <h:outputText value="#{i18n.address_state}" />  
+            </f:facet>  
+            <h:outputText value="#{address.state}" />  
+        </p:column>  
+        <p:column sortBy="#{address.zip}" filterBy="#{address.zip}">  
+            <f:facet name="header">  
+                <h:outputText value="#{i18n.address_zip}" />  
+            </f:facet>  
+            <h:outputText value="#{address.zip}" />  
+        </p:column>  
+        <p:column sortBy="#{address.latitude}" filterBy="#{address.latitude}">  
+            <f:facet name="header">  
+                <h:outputText value="#{i18n.address_latitude}" />  
+            </f:facet>  
+            <h:outputText value="#{address.latitude}" />  
+        </p:column>  
+        <p:column sortBy="#{address.longitude}" filterBy="#{address.longitude}">  
+            <f:facet name="header">  
+                <h:outputText value="#{i18n.address_longitude}" />  
+            </f:facet>  
+            <h:outputText value="#{address.longitude}" />  
+        </p:column>  
+		<f:facet name="footer"> 
+			<p:commandButton id="viewButton" value="View" icon="ui-icon-search"  
+                    update=":formAddress:display" oncomplete="addressDialog.show()"/>  	
+            <h:button value="New #{i18n.address}" outcome="/petshop/pet/AddressCreate.xhtml" class="Automatic reply: ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+            <p:commandButton title="Delete #{i18n.address}" value="Delete #{i18n.address}" action="#{addressController.delete}" />
+		</f:facet> 	
+		
+		<p:rowExpansion>  
+			<p:fieldset legend="Address Details" align="left">  
+				 <p:toolbar>  
+					<p:toolbarGroup > 
+						<p:commandButton type="button" title="Edit" icon="ui-icon-folder-open"/>  
+						<p:separator />          
+						<p:commandButton type="button" title="Save" icon="ui-icon-disk"/>  
+						<p:separator />  
+						<p:commandButton type="button" title="Cancel" icon="ui-icon-trash"/> 
+					</p:toolbarGroup>  
+				</p:toolbar>
+				<h:panelGrid columns="2" cellpadding="5"  styleClass="list_display_table_TR_even">
+            <h:outputText value="#{i18n.address_street1}:" />  
+            <h:outputText value="#{addressController.selectedAddress.street1}" />  
+            <h:outputText value="#{i18n.address_street2}:" />  
+            <h:outputText value="#{addressController.selectedAddress.street2}" />  
+            <h:outputText value="#{i18n.address_city}:" />  
+            <h:outputText value="#{addressController.selectedAddress.city}" />  
+            <h:outputText value="#{i18n.address_state}:" />  
+            <h:outputText value="#{addressController.selectedAddress.state}" />  
+            <h:outputText value="#{i18n.address_zip}:" />  
+            <h:outputText value="#{addressController.selectedAddress.zip}" />  
+            <h:outputText value="#{i18n.address_latitude}:" />  
+            <h:outputText value="#{addressController.selectedAddress.latitude}" />  
+            <h:outputText value="#{i18n.address_longitude}:" />  
+            <h:outputText value="#{addressController.selectedAddress.longitude}" />  
+				</h:panelGrid>
+			</p:fieldset> 
+
+		</p:rowExpansion>  
+		
+    </p:dataTable>  
+  
+    <p:dialog header="address detail" widgetVar="addressDialog" 
+		resizable="true" id="addressDialogId" 
+        width="400" showEffect="clip" hideEffect="fold">  
+  
+        <h:panelGrid id="display" columns="2" cellpadding="4">  
+            <h:outputText value="#{i18n.address_street1}:" />  
+            <h:outputText value="#{addressController.selectedAddress.street1}" />  
+            <h:outputText value="#{i18n.address_street2}:" />  
+            <h:outputText value="#{addressController.selectedAddress.street2}" />  
+            <h:outputText value="#{i18n.address_city}:" />  
+            <h:outputText value="#{addressController.selectedAddress.city}" />  
+            <h:outputText value="#{i18n.address_state}:" />  
+            <h:outputText value="#{addressController.selectedAddress.state}" />  
+            <h:outputText value="#{i18n.address_zip}:" />  
+            <h:outputText value="#{addressController.selectedAddress.zip}" />  
+            <h:outputText value="#{i18n.address_latitude}:" />  
+            <h:outputText value="#{addressController.selectedAddress.latitude}" />  
+            <h:outputText value="#{i18n.address_longitude}:" />  
+            <h:outputText value="#{addressController.selectedAddress.longitude}" />  
+
+        </h:panelGrid>  
+    </p:dialog>  
+  
+</h:form> 
+
+</ui:define>
+</ui:composition>
+</html><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlListEntity
+	 - file name : JSFXhtmlListEntity.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

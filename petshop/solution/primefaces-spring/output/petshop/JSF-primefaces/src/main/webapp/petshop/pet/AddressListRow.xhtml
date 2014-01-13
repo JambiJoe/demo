@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+            <p:column sortBy="#{item.street1}" filterBy="#{item.street1}">  
+                <f:facet name="header">  
+                    <h:outputText value="#{i18n.address_street1}" />  
+                </f:facet>  
+                <h:outputText value="#{item.street1}" />  
+            </p:column>
+            <p:column sortBy="#{item.street2}" filterBy="#{item.street2}">  
+                <f:facet name="header">  
+                    <h:outputText value="#{i18n.address_street2}" />  
+                </f:facet>  
+                <h:outputText value="#{item.street2}" />  
+            </p:column>
+            <p:column sortBy="#{item.city}" filterBy="#{item.city}">  
+                <f:facet name="header">  
+                    <h:outputText value="#{i18n.address_city}" />  
+                </f:facet>  
+                <h:outputText value="#{item.city}" />  
+            </p:column>
+            <p:column sortBy="#{item.state}" filterBy="#{item.state}">  
+                <f:facet name="header">  
+                    <h:outputText value="#{i18n.address_state}" />  
+                </f:facet>  
+                <h:outputText value="#{item.state}" />  
+            </p:column>
+            <p:column sortBy="#{item.zip}" filterBy="#{item.zip}">  
+                <f:facet name="header">  
+                    <h:outputText value="#{i18n.address_zip}" />  
+                </f:facet>  
+                <h:outputText value="#{item.zip}" />  
+            </p:column>
+            <p:column sortBy="#{item.latitude}" filterBy="#{item.latitude}">  
+                <f:facet name="header">  
+                    <h:outputText value="#{i18n.address_latitude}" />  
+                </f:facet>  
+                <h:outputText value="#{item.latitude}" />  
+            </p:column>
+            <p:column sortBy="#{item.longitude}" filterBy="#{item.longitude}">  
+                <f:facet name="header">  
+                    <h:outputText value="#{i18n.address_longitude}" />  
+                </f:facet>  
+                <h:outputText value="#{item.longitude}" />  
+            </p:column>
+</html>
+<!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlListRowEntity
+	 - file name : JSFXhtmlListRowEntity.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

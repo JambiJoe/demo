@@ -1,0 +1,174 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+ <h:form id="formTag"> 
+     <p:growl id="growl" showDetail="true"/>
+     <h:panelGroup id="dataPanel">  
+        <p:dataTable value="#{tagController.lazyModel}" 
+            id="tagTable" 
+            var="item" 
+            paginator="true" rows="10" 
+            lazy="true"
+			selection="#{tagController.selectedTag}" selectionMode="single"
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+            rowsPerPageTemplate="10,20,50"
+			emptyMessage="No Tag found with given criteria"> 
+            <p:ajax partialSubmit="true" event="rowSelect"
+                    listener="#{tagController.onRowSelect}"
+                    update=":form2:panel :form2:childrenTab"/> 
+            <f:facet name="header">  
+                List of #{i18n.tags}  
+            </f:facet>
+            <ui:include src="/petshop/pet/TagListRow.xhtml">
+               <ui:param name="isSemanticReference" value="false" />
+             </ui:include>
+        </p:dataTable>
+    </h:panelGroup>
+   </h:form>        
+
+	<p:confirmDialog id="confirmDialog" showEffect="fade" hideEffect="fade" global="true" >
+		<h:form id="deletion">
+			<p:commandButton id="confirm" value="Yes" immediate="true" 
+				styleClass="ui-confirmdialog-yes" 
+				icon="ui-icon-check"
+				actionListener="#{tagController.deleteListener}" update=":formTag:tagTable,:form2:panel,:form2:childrenTab,:formTag:growl" />
+			<p:commandButton id="decline" value="No" type="button" 
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" /> 
+	   </h:form>
+	</p:confirmDialog>
+
+  	<h:form id="form2">
+		<p:panelGrid columns="3" id="panel" cellpadding="5" styleClass="ui-widget-content-borderless" columnClasses="mp-column-center">
+            <f:facet name="header" align="left">
+                <h:outputText value="#{i18n.tag} details " />
+            	<p:commandButton value="Save" icon="ui-icon-check"  actionListener="#{tagController.createOrUpdateListener}" update=":formTag:tagTable,:form2:panel,:form2:childrenTab,:formTag:growl" />  
+            	<p:commandButton value="Clear" immediate="true" icon="ui-icon-cancel" process="@this" actionListener="#{tagController.clearListener}" update=":form2:panel,:form2:childrenTab" style="margin:5px;"/>
+            	<p:commandButton value="Delete" icon="ui-icon-trash" >
+                    <p:confirm header="Deletion process" severity="alert" icon="ui-icon-alert" message="Can you confirm your deletion?"/>
+                </p:commandButton>
+            </f:facet>
+            <ui:include src="/petshop/pet/TagEdit.xhtml">
+               <ui:param name="affectFormId" value=":form2" />
+               <ui:param name="idValue" value="1" />
+            </ui:include>
+        </p:panelGrid>
+		<h:panelGrid id="childrenPanel">
+           <p:tabView id="childrenTab" orientation="top|bottom|left|right" cache="false" > 
+             <p:ajax event="tabChange" listener="#{tagController.onTabChange}"/>
+                   <p:tab id="child-myGoodItemTagItemViaItemid" title="#{i18n.MyGoodItem}" > 
+                	 <p:outputPanel id="child-myGoodItemTagItemViaItemidPanel" >	
+                		<p:toolbar id="add-myGoodItemTagItemViaItemid">  
+                			<p:toolbarGroup align="left"> 
+                				<p:commandButton 
+                                    immediate="true" 
+									value="Associate"
+									title="Add item"  
+									icon="ui-icon-document" 
+									oncomplete="addMyGoodItemTagItemViaItemid.show();" 
+									update=":containerBasicAddMyGoodItemTagItemViaItemid">
+									<f:actionListener binding="#{tagController.activateRenderAddMyGoodItemTagItemViaItemid()}" />
+                                </p:commandButton>								
+							</p:toolbarGroup>
+                		</p:toolbar>						
+                        <p:dataTable var="item" 
+							    value="#{tagController.getMyGoodItemTagItemViaItemid()}" paginator="true" rows="10"  
+                                onRowSelectUpdate="display" 
+                                dynamic="true"  resizableColumns="true"
+                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                rowsPerPageTemplate="5,10,15"> 
+							<f:facet name="header">  
+                            List of #{i18n.tagItem}  
+							</f:facet>
+							<ui:include src="/petshop/product/MyGoodItemListRow.xhtml">
+								<ui:param name="isSemanticReference" value="true" />
+							</ui:include>
+							<p:column>
+                            <p:commandButton value="Delete association" 
+            					id="detailButtonMyGoodItemTagItemViaItemid" 
+            					title="Delete"
+								update=":form2:childrenTab:child-myGoodItemTagItemViaItemidPanel,:formTag:growl"
+								action="#{tagController.disaffectAndDesactivateRenderMyGoodItemTagItemViaItemid}"
+            					process="@this">
+								<f:actionListener binding="#{tagController.setMyGoodItemTagItemViaItemidToAdd(item)}"/>
+                            </p:commandButton>
+							</p:column>
+						</p:dataTable>
+                	 </p:outputPanel>
+                   </p:tab>
+			</p:tabView>
+		</h:panelGrid>
+	</h:form>
+
+
+     <!-- dialog to add and manage MyGoodItemTagItemViaItemid -->
+	 <p:outputPanel id="containerBasicAddMyGoodItemTagItemViaItemid" >
+         <p:dialog id="basicAddMyGoodItemTagItemViaItemid" 
+			       message="Can you select one item?"
+                   rendered="#{tagController.isRenderAddMyGoodItemTagItemViaItemid()}"
+                   header="Affectation process" severity="alert"
+                   widgetVar="addMyGoodItemTagItemViaItemid"
+				   resizable="true" 
+                   appendTo="@(body)">
+
+             <h:form id="formAddmyGoodItemTagItemViaItemid">
+                 <p:dataTable value="#{myGoodItemController.lazyModel}"
+                              var="item"
+                              paginator="true" rows="10"
+                              lazy="true"
+                              selection="#{myGoodItemController.selectedMyGoodItem}" selectionMode="single"
+                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                              rowsPerPageTemplate="10,20,50"
+                              emptyMessage="No MyGoodItem found with given criteria">
+    
+                     <f:facet name="header">
+                         List of #{i18n.tagItem} 
+                     </f:facet>
+                     <ui:include src="/petshop/product/MyGoodItemListRow.xhtml">
+                         <ui:param name="isSemanticReference" value="false" />
+                     </ui:include>
+                     <p:column>
+                         <p:commandButton value="Affect"
+                             id="cmdAddMyGoodItemTagItemViaItemid"
+                             update=":form2:childrenTab:child-myGoodItemTagItemViaItemidPanel,:formTag:growl"
+                             action="#{tagController.affectAndDesactivateRenderMyGoodItemTagItemViaItemid}"
+                             title="Affect"
+                             onclick="addMyGoodItemTagItemViaItemid.hide()"
+                             process="@this">
+							 <f:actionListener binding="#{tagController.setMyGoodItemTagItemViaItemidToAdd(item)}"/>
+                         </p:commandButton >
+                     </p:column>
+                 </p:dataTable>
+             </h:form>
+         </p:dialog>
+     </p:outputPanel>
+
+</html><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlListLazyEntityPortlet
+	 - file name : JSFXhtmlListLazyEntityPortlet.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

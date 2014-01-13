@@ -1,0 +1,164 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.mp.demo.petshop</groupId>
+  <artifactId>petshopBsla</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>petshopBackEnd BSLA specification and implementation</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+
+    <dependency>
+        <groupId>net.sf.mp.demo.petshop</groupId>
+        <artifactId>petshopBackEnd</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>${junit.version}</version>
+		<scope>test</scope>
+	</dependency>
+
+	<!-- spring -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-oxm</artifactId>
+		<version>${spring.version}</version>
+		<scope>runtime</scope>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${spring.version}</version>
+		<scope>compile</scope>
+	</dependency>
+	
+	<!-- security -->
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>${spring-security.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>${spring-security.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${spring.version}</version>
+		<scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aop</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${spring.version}</version>
+		<scope>compile</scope>
+	</dependency>
+	<!-- spring end -->
+	
+  </dependencies>
+  
+  <build>
+    <!--<finalName>petshopBackEnd</finalName>-->
+    <resources>
+      <!-- overwrite generated artifacts for packaging: for example by providing another jndi name ... -->
+	  <resource>
+		<directory>src-overwritten/main/resources</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+	  </resource>    
+	  <resource>
+		<directory>src/main/resources</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+	  </resource>
+	</resources>     
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.5</source>
+                <target>1.5</target>
+            </configuration>
+         </plugin>         
+     </plugins>    
+  </build>  
+  
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <configuration>
+          <formats>
+            <format>html</format>
+            <format>xml</format>
+          </formats>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
+     <repositories>
+      <repository>
+         <id>spring-maven-snapshot</id>
+         <name>Springframework Maven Snapshot Repository</name>
+         <url>http://maven.springframework.org/snapshot</url>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+      </repository>
+   </repositories>
+	<properties>
+		<spring-security.version>3.1.0.CI-SNAPSHOT</spring-security.version>
+		<spring.version>3.0.6.BUILD-SNAPSHOT</spring.version>
+		<cglib.version>2.2.2</cglib.version>
+		<junit.version>4.10</junit.version>
+	</properties>
+	
+</project>
+<!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : PomXml.BSLA
+	 - file name : PomXml.BSLA.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

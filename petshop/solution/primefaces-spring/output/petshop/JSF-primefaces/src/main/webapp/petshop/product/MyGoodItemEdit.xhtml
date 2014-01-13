@@ -1,0 +1,231 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:petshop="http://java.sun.com/jsf/composite/petshop">
+<!-- those two empty p : outputLabel are totally inbelievable but there seems to be needed 
+     when the artifact is used from a ui:include otherwise there is gap of one column and the
+	 label, field, validation are not aligned...&nbsp;
+-->
+<p:outputLabel> </p:outputLabel>
+<p:outputLabel> </p:outputLabel>
+
+
+	<p:outputLabel>#{i18n.myGoodItem_name} *</p:outputLabel>
+	<p:inputText 
+		size="30" maxlength="30" 
+		label="Name" id="lblName-#{idValue}" value="#{myGoodItemController.selectedMyGoodItem.name}" required="true"/>
+	<p:message for="lblName-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_description} *</p:outputLabel>
+	<p:inputTextarea rows="5" cols="60" maxlength="500" width="500" 
+        counterTemplate="{0} characters remaining." autoResize="false"
+		label="Description" id="lblDescription-#{idValue}" value="#{myGoodItemController.selectedMyGoodItem.description}" required="true"/>
+	<p:message for="lblDescription-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_imageurl}</p:outputLabel>
+	<p:inputText 
+		size="40" maxlength="55" 
+		label="Imageurl" id="lblImageurl-#{idValue}" value="#{myGoodItemController.selectedMyGoodItem.imageurl}" required="false"/>
+	<p:message for="lblImageurl-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_imagethumburl}</p:outputLabel>
+	<p:inputText 
+		size="40" maxlength="55" 
+		label="Imagethumburl" id="lblImagethumburl-#{idValue}" value="#{myGoodItemController.selectedMyGoodItem.imagethumburl}" required="false"/>
+	<p:message for="lblImagethumburl-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_price} *</p:outputLabel>
+	<p:inputText 
+		size="14" maxlength="14" 
+		label="Price" id="lblPrice-#{idValue}" value="#{myGoodItemController.selectedMyGoodItem.price}" required="true"/>
+	<p:message for="lblPrice-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_totalscore} *</p:outputLabel>
+	<p:inputText 
+		size="11" maxlength="11" 
+		label="Totalscore" id="lblTotalscore-#{idValue}" value="#{myGoodItemController.selectedMyGoodItem.totalscore}" required="true"/>
+	<p:message for="lblTotalscore-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_numberofvotes} *</p:outputLabel>
+	<p:inputText 
+		size="11" maxlength="11" 
+		label="Numberofvotes" id="lblNumberofvotes-#{idValue}" value="#{myGoodItemController.selectedMyGoodItem.numberofvotes}" required="true"/>
+	<p:message for="lblNumberofvotes-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_disabled} *</p:outputLabel>
+	<p:inputText 
+		size="11" maxlength="11" 
+		label="Disabled" id="lblDisabled-#{idValue}" value="#{myGoodItemController.selectedMyGoodItem.disabled}" required="true"/>
+	<p:message for="lblDisabled-#{idValue}" />
+	
+	
+    <c:if test="#{fieldToHide != 'addressAddressid'}">
+		<p:row>
+			<p:outputLabel>#{i18n.myGoodItem_addressAddressid} * </p:outputLabel>
+			<h:outputText value="&#160;&#160;" /><p:commandButton immediate="true" actionListener="#{myGoodItemController.activateRenderAddressAddressid}" title="Search" icon="ui-icon-search" oncomplete="sucAddressItemViaAddressid1Dialog.show()" update="containerAddressItemViaAddressid1" />
+		</p:row>
+		<p:row>
+            <p:panel id="lblAddressAddressid-#{idValue}" header="#{i18n.myGoodItem_addressAddressid} #{jsfSemanticReferenceUtils.getStrippedSemanticReferenceAddress(myGoodItemController.selectedMyGoodItem.addressAddressid, 30)} ..." toggleable="true" toggleSpeed="500" closeSpeed="500" widgetVar="parentaddressAddressid" collapsed="#{jsfSemanticReferenceUtils.getSemanticReferenceAddress(myGoodItemController.selectedMyGoodItem.addressAddressid) eq ''}" >
+				<petshop:AddressSemanticReference entity="#{myGoodItemController.selectedMyGoodItem.addressAddressid}"/>
+			</p:panel>
+        </p:row>
+        <p:message for="lblAddressAddressid-#{idValue}" />
+    </c:if>	
+	
+	
+    <c:if test="#{fieldToHide != 'thisIsMyProduct'}">
+		<p:row>
+			<p:outputLabel>#{i18n.myGoodItem_thisIsMyProduct} * </p:outputLabel>
+			<h:outputText value="&#160;&#160;" /><p:commandButton immediate="true" actionListener="#{myGoodItemController.activateRenderThisIsMyProduct}" title="Search" icon="ui-icon-search" oncomplete="sucMyGoodProductItemViaProductid2Dialog.show()" update="containerMyGoodProductItemViaProductid2" />
+		</p:row>
+		<p:row>
+            <p:panel id="lblThisIsMyProduct-#{idValue}" header="#{i18n.myGoodItem_thisIsMyProduct} #{jsfSemanticReferenceUtils.getStrippedSemanticReferenceMyGoodProduct(myGoodItemController.selectedMyGoodItem.thisIsMyProduct, 30)} ..." toggleable="true" toggleSpeed="500" closeSpeed="500" widgetVar="parentthisIsMyProduct" collapsed="#{jsfSemanticReferenceUtils.getSemanticReferenceMyGoodProduct(myGoodItemController.selectedMyGoodItem.thisIsMyProduct) eq ''}" >
+				<petshop:MyGoodProductSemanticReference entity="#{myGoodItemController.selectedMyGoodItem.thisIsMyProduct}"/>
+			</p:panel>
+        </p:row>
+        <p:message for="lblThisIsMyProduct-#{idValue}" />
+    </c:if>	
+	
+	
+    <c:if test="#{fieldToHide != 'contactinfoContactinfoid'}">
+		<p:row>
+			<p:outputLabel>#{i18n.myGoodItem_contactinfoContactinfoid} * </p:outputLabel>
+			<h:outputText value="&#160;&#160;" /><p:commandButton immediate="true" actionListener="#{myGoodItemController.activateRenderContactinfoContactinfoid}" title="Search" icon="ui-icon-search" oncomplete="sucSellercontactinfoItemViaContactinfoid3Dialog.show()" update="containerSellercontactinfoItemViaContactinfoid3" />
+		</p:row>
+		<p:row>
+            <p:panel id="lblContactinfoContactinfoid-#{idValue}" header="#{i18n.myGoodItem_contactinfoContactinfoid} #{jsfSemanticReferenceUtils.getStrippedSemanticReferenceSellercontactinfo(myGoodItemController.selectedMyGoodItem.contactinfoContactinfoid, 30)} ..." toggleable="true" toggleSpeed="500" closeSpeed="500" widgetVar="parentcontactinfoContactinfoid" collapsed="#{jsfSemanticReferenceUtils.getSemanticReferenceSellercontactinfo(myGoodItemController.selectedMyGoodItem.contactinfoContactinfoid) eq ''}" >
+				<petshop:SellercontactinfoSemanticReference entity="#{myGoodItemController.selectedMyGoodItem.contactinfoContactinfoid}"/>
+			</p:panel>
+        </p:row>
+        <p:message for="lblContactinfoContactinfoid-#{idValue}" />
+    </c:if>	
+<p:outputPanel id="containerAddressItemViaAddressid1" >
+ <p:dialog id="sucAddressItemViaAddressid1Dialog" message="Can you select one item?" rendered="#{myGoodItemController.isRenderAddressAddressid()}"
+		header="Affectation process" severity="alert" widgetVar="sucAddressItemViaAddressid1Dialog" appendTo="@(body)">
+	<h:form id="sucAddressItemViaAddressid1Form">
+    <p:dataTable value="#{addressController.lazyModel}" 
+        id="tableAddressItemViaAddressid1" 
+        var="item" 
+        paginator="true" rows="10" 
+        lazy="true"
+		selection="#{addressController.selectedAddress}" selectionMode="single"
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+        rowsPerPageTemplate="10,20,50"
+		emptyMessage="No Address found with given criteria"> 
+
+        <f:facet name="header">  
+            List of addresses  
+        </f:facet>
+        <ui:include src="/petshop/pet/AddressListRow.xhtml">
+           <ui:param name="isSemanticReference" value="false" />
+         </ui:include>
+		 <p:column>
+            <p:commandButton value="Affect" id="affectButtonAddressid" update="#{affectFormId}:lblAddressAddressid-#{idValue}" actionListener="#{myGoodItemController.desactivateRenderAddressAddressid}" title="Affect" onclick="sucAddressItemViaAddressid1Dialog.hide()" process="@this">
+				<f:setPropertyActionListener value="#{item.addressid}" target="#{myGoodItemController.selectedMyGoodItem.addressAddressid_}" />
+				<f:setPropertyActionListener value="#{item}" target="#{myGoodItemController.selectedMyGoodItem.addressAddressid}" />
+            </p:commandButton >
+		  </p:column>
+    </p:dataTable>
+   </h:form>
+ </p:dialog>
+</p:outputPanel>
+<p:outputPanel id="containerMyGoodProductItemViaProductid2" >
+ <p:dialog id="sucMyGoodProductItemViaProductid2Dialog" message="Can you select one item?" rendered="#{myGoodItemController.isRenderThisIsMyProduct()}"
+		header="Affectation process" severity="alert" widgetVar="sucMyGoodProductItemViaProductid2Dialog" appendTo="@(body)">
+	<h:form id="sucMyGoodProductItemViaProductid2Form">
+    <p:dataTable value="#{myGoodProductController.lazyModel}" 
+        id="tableMyGoodProductItemViaProductid2" 
+        var="item" 
+        paginator="true" rows="10" 
+        lazy="true"
+		selection="#{myGoodProductController.selectedMyGoodProduct}" selectionMode="single"
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+        rowsPerPageTemplate="10,20,50"
+		emptyMessage="No MyGoodProduct found with given criteria"> 
+
+        <f:facet name="header">  
+            List of my good products  
+        </f:facet>
+        <ui:include src="/petshop/product/MyGoodProductListRow.xhtml">
+           <ui:param name="isSemanticReference" value="false" />
+         </ui:include>
+		 <p:column>
+            <p:commandButton value="Affect" id="affectButtonProductid" update="#{affectFormId}:lblThisIsMyProduct-#{idValue}" actionListener="#{myGoodItemController.desactivateRenderThisIsMyProduct}" title="Affect" onclick="sucMyGoodProductItemViaProductid2Dialog.hide()" process="@this">
+				<f:setPropertyActionListener value="#{item.productid}" target="#{myGoodItemController.selectedMyGoodItem.thisIsMyProduct_}" />
+				<f:setPropertyActionListener value="#{item}" target="#{myGoodItemController.selectedMyGoodItem.thisIsMyProduct}" />
+            </p:commandButton >
+		  </p:column>
+    </p:dataTable>
+   </h:form>
+ </p:dialog>
+</p:outputPanel>
+<p:outputPanel id="containerSellercontactinfoItemViaContactinfoid3" >
+ <p:dialog id="sucSellercontactinfoItemViaContactinfoid3Dialog" message="Can you select one item?" rendered="#{myGoodItemController.isRenderContactinfoContactinfoid()}"
+		header="Affectation process" severity="alert" widgetVar="sucSellercontactinfoItemViaContactinfoid3Dialog" appendTo="@(body)">
+	<h:form id="sucSellercontactinfoItemViaContactinfoid3Form">
+    <p:dataTable value="#{sellercontactinfoController.lazyModel}" 
+        id="tableSellercontactinfoItemViaContactinfoid3" 
+        var="item" 
+        paginator="true" rows="10" 
+        lazy="true"
+		selection="#{sellercontactinfoController.selectedSellercontactinfo}" selectionMode="single"
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+        rowsPerPageTemplate="10,20,50"
+		emptyMessage="No Sellercontactinfo found with given criteria"> 
+
+        <f:facet name="header">  
+            List of sellercontactinfos  
+        </f:facet>
+        <ui:include src="/petshop/pet/SellercontactinfoListRow.xhtml">
+           <ui:param name="isSemanticReference" value="false" />
+         </ui:include>
+		 <p:column>
+            <p:commandButton value="Affect" id="affectButtonContactinfoid" update="#{affectFormId}:lblContactinfoContactinfoid-#{idValue}" actionListener="#{myGoodItemController.desactivateRenderContactinfoContactinfoid}" title="Affect" onclick="sucSellercontactinfoItemViaContactinfoid3Dialog.hide()" process="@this">
+				<f:setPropertyActionListener value="#{item.contactinfoid}" target="#{myGoodItemController.selectedMyGoodItem.contactinfoContactinfoid_}" />
+				<f:setPropertyActionListener value="#{item}" target="#{myGoodItemController.selectedMyGoodItem.contactinfoContactinfoid}" />
+            </p:commandButton >
+		  </p:column>
+    </p:dataTable>
+   </h:form>
+ </p:dialog>
+</p:outputPanel>
+
+<!-- those two empty p : outputLabel are totally inbelievable but there seems to be needed 
+     when the artifact is used from a ui:include otherwise there is gap of one column and the
+	 label, field, validation are not aligned...&nbsp;
+-->
+<p:outputLabel> </p:outputLabel>
+<p:outputLabel> </p:outputLabel>
+
+</html>
+<!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlEditEntity
+	 - file name : JSFXhtmlEditEntity.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

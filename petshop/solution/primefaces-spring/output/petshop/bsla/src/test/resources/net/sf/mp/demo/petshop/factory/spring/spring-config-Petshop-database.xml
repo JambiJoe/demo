@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jndi="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="placeHolderConfig"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location"><value>classpath:net/sf/mp/demo/petshop/factory/spring/spring-config-Petshop.properties</value></property>
+    </bean>     
+
+    <bean id="petshopDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName"><value>${jdbc.petshop.driverClassName}</value></property>
+        <property name="url"><value>${jdbc.petshop.url}</value></property>
+        <property name="username"><value>${jdbc.petshop.username}</value></property>
+        <property name="password"><value>${jdbc.petshop.password}</value></property>
+    </bean>
+    
+    <!-- correct bean to effectively insert (and commit) -->
+    <bean id="petshopTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="JPApetshopFactory"/>
+        <property name="dataSource" ref="petshopDataSource"/>
+    </bean>
+
+    <context:component-scan base-package="net.sf.mp.demo.petshop.dao.sdd.impl"/>
+    <!-- to get the entity manager -->
+    <tx:annotation-driven transaction-manager="petshopTransactionManager"/>
+    
+</beans>
+<!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : BslaSpringDatabase
+	 - file name : BslaSpringConfigDatabaseJPA.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:20 CET
+-->

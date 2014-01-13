@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<portlet-app id="petshop"
+	xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" 
+	version="1.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd"> 
+	<portlet id="Address">
+		<description>petshop - Address</description>       
+		<description xml:lang="en">petshop - Address</description>         
+		<portlet-name>Address</portlet-name>
+		<display-name>petshop - Address</display-name>    
+		<display-name xml:lang="en">petshop - Address</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/pet/AddressPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+	<portlet id="Category">
+		<description>petshop - Category</description>       
+		<description xml:lang="en">petshop - Category</description>         
+		<portlet-name>Category</portlet-name>
+		<display-name>petshop - Category</display-name>    
+		<display-name xml:lang="en">petshop - Category</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/pet/CategoryPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+	<portlet id="Sellercontactinfo">
+		<description>petshop - Sellercontactinfo</description>       
+		<description xml:lang="en">petshop - Sellercontactinfo</description>         
+		<portlet-name>Sellercontactinfo</portlet-name>
+		<display-name>petshop - Sellercontactinfo</display-name>    
+		<display-name xml:lang="en">petshop - Sellercontactinfo</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/pet/SellercontactinfoPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+	<portlet id="Tag">
+		<description>petshop - Tag</description>       
+		<description xml:lang="en">petshop - Tag</description>         
+		<portlet-name>Tag</portlet-name>
+		<display-name>petshop - Tag</display-name>    
+		<display-name xml:lang="en">petshop - Tag</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/pet/TagPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+	<portlet id="Ziplocation">
+		<description>petshop - Ziplocation</description>       
+		<description xml:lang="en">petshop - Ziplocation</description>         
+		<portlet-name>Ziplocation</portlet-name>
+		<display-name>petshop - Ziplocation</display-name>    
+		<display-name xml:lang="en">petshop - Ziplocation</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/pet/ZiplocationPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+	<portlet id="MyGoodItem">
+		<description>petshop - MyGoodItem</description>       
+		<description xml:lang="en">petshop - MyGoodItem</description>         
+		<portlet-name>MyGoodItem</portlet-name>
+		<display-name>petshop - MyGoodItem</display-name>    
+		<display-name xml:lang="en">petshop - MyGoodItem</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/product/MyGoodItemPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+	<portlet id="MyGoodProduct">
+		<description>petshop - MyGoodProduct</description>       
+		<description xml:lang="en">petshop - MyGoodProduct</description>         
+		<portlet-name>MyGoodProduct</portlet-name>
+		<display-name>petshop - MyGoodProduct</display-name>    
+		<display-name xml:lang="en">petshop - MyGoodProduct</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/product/MyGoodProductPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+	<portlet id="GetAddressAbstract">
+		<description>petshop - GetAddressAbstract</description>       
+		<description xml:lang="en">petshop - GetAddressAbstract</description>         
+		<portlet-name>GetAddressAbstract</portlet-name>
+		<display-name>petshop - GetAddressAbstract</display-name>    
+		<display-name xml:lang="en">petshop - GetAddressAbstract</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/statement/GetAddressAbstractPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+	<portlet id="GetAddressSummary">
+		<description>petshop - GetAddressSummary</description>       
+		<description xml:lang="en">petshop - GetAddressSummary</description>         
+		<portlet-name>GetAddressSummary</portlet-name>
+		<display-name>petshop - GetAddressSummary</display-name>    
+		<display-name xml:lang="en">petshop - GetAddressSummary</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/statement/GetAddressSummaryPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+	<portlet id="GetAddressesByCriteria">
+		<description>petshop - GetAddressesByCriteria</description>       
+		<description xml:lang="en">petshop - GetAddressesByCriteria</description>         
+		<portlet-name>GetAddressesByCriteria</portlet-name>
+		<display-name>petshop - GetAddressesByCriteria</display-name>    
+		<display-name xml:lang="en">petshop - GetAddressesByCriteria</display-name>   
+		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.view</name>
+			<value>/petshop/statement/GetAddressesByCriteriaPortlet.xhtml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>en</supported-locale> 
+	</portlet>
+
+</portlet-app><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : Portlet.xml
+	 - file name : Portlet.xml.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

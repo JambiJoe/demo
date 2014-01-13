@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+
+	<application>
+	    <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+		<resource-bundle>
+			<base-name>net.sf.mp.demo.petshop.i18n.petshop</base-name>
+			<var>i18n</var>
+		</resource-bundle>
+	</application>
+
+    <managed-bean>
+        <managed-bean-name>petshopMenu</managed-bean-name>
+        <managed-bean-class>net.sf.mp.demo.petshop.menu.PetshopMenu</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+	
+	<navigation-rule>
+		<from-view-id>/petshop/pet/AddressListLazy.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/AddressCreate.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/petshop/pet/AddressCreate.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/AddressListLazy.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	
+
+	<navigation-rule>
+		<from-view-id>/petshop/pet/CategoryListLazy.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/CategoryCreate.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/petshop/pet/CategoryCreate.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/CategoryListLazy.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	
+
+	<navigation-rule>
+		<from-view-id>/petshop/pet/SellercontactinfoListLazy.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/SellercontactinfoCreate.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/petshop/pet/SellercontactinfoCreate.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/SellercontactinfoListLazy.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	
+
+	<navigation-rule>
+		<from-view-id>/petshop/pet/TagListLazy.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/TagCreate.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/petshop/pet/TagCreate.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/TagListLazy.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	
+
+	<navigation-rule>
+		<from-view-id>/petshop/pet/ZiplocationListLazy.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/ZiplocationCreate.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/petshop/pet/ZiplocationCreate.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/pet/ZiplocationListLazy.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	
+
+	<navigation-rule>
+		<from-view-id>/petshop/product/MyGoodItemListLazy.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/product/MyGoodItemCreate.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/petshop/product/MyGoodItemCreate.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/product/MyGoodItemListLazy.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	
+
+	<navigation-rule>
+		<from-view-id>/petshop/product/MyGoodProductListLazy.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/product/MyGoodProductCreate.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/petshop/product/MyGoodProductCreate.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/petshop/product/MyGoodProductListLazy.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>	
+	
+
+
+
+
+    <converter>
+        <converter-for-class>java.lang.Enum</converter-for-class>
+        <converter-class>javax.faces.convert.EnumConverter</converter-class>
+    </converter>
+	
+    <converter>
+        <converter-for-class>java.lang.Boolean</converter-for-class>
+        <converter-class>javax.faces.convert.BooleanConverter</converter-class>
+    </converter>
+</faces-config><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFFaceConfigXml
+	 - file name : JSFFaceConfigXml.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+  <ui:composition template="/_Decorator.xhtml">
+	<ui:define name="title">#{i18n.createTitle} MyGoodItem</ui:define>
+	<ui:define name="heading">#{i18n.createHeading}</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<p:panel id="createPnl" header="#{i18n.myGoodItem}"
+				toggleable="true" closable="false" toggleSpeed="500"
+				onCloseUpdate="growl" closeSpeed="2000" onToggleUpdate="growl"
+				widgetVar="panel">
+				<h:panelGrid columns="3" cellpadding="10">
+
+	<p:outputLabel>#{i18n.myGoodItem_name} *</p:outputLabel>
+	<p:inputText 
+		size="30" maxlength="30" 
+		label="Name" id="lblName-#{idValue}" value="#{myGoodItemController.myGoodItem.name}" required="true"/>
+	<p:message for="lblName-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_description} *</p:outputLabel>
+	<p:inputTextarea rows="5" cols="60" maxlength="500" width="500" 
+        counterTemplate="{0} characters remaining." autoResize="false"
+		label="Description" id="lblDescription-#{idValue}" value="#{myGoodItemController.myGoodItem.description}" required="true"/>
+	<p:message for="lblDescription-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_imageurl}</p:outputLabel>
+	<p:inputText 
+		size="40" maxlength="55" 
+		label="Imageurl" id="lblImageurl-#{idValue}" value="#{myGoodItemController.myGoodItem.imageurl}" required="false"/>
+	<p:message for="lblImageurl-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_imagethumburl}</p:outputLabel>
+	<p:inputText 
+		size="40" maxlength="55" 
+		label="Imagethumburl" id="lblImagethumburl-#{idValue}" value="#{myGoodItemController.myGoodItem.imagethumburl}" required="false"/>
+	<p:message for="lblImagethumburl-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_price} *</p:outputLabel>
+	<p:inputText 
+		size="14" maxlength="14" 
+		label="Price" id="lblPrice-#{idValue}" value="#{myGoodItemController.myGoodItem.price}" required="true"/>
+	<p:message for="lblPrice-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_totalscore} *</p:outputLabel>
+	<p:inputText 
+		size="11" maxlength="11" 
+		label="Totalscore" id="lblTotalscore-#{idValue}" value="#{myGoodItemController.myGoodItem.totalscore}" required="true"/>
+	<p:message for="lblTotalscore-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_numberofvotes} *</p:outputLabel>
+	<p:inputText 
+		size="11" maxlength="11" 
+		label="Numberofvotes" id="lblNumberofvotes-#{idValue}" value="#{myGoodItemController.myGoodItem.numberofvotes}" required="true"/>
+	<p:message for="lblNumberofvotes-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_disabled} *</p:outputLabel>
+	<p:inputText 
+		size="11" maxlength="11" 
+		label="Disabled" id="lblDisabled-#{idValue}" value="#{myGoodItemController.myGoodItem.disabled}" required="true"/>
+	<p:message for="lblDisabled-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_addressAddressid} *</p:outputLabel>
+	<p:inputText 
+		size="11" maxlength="11" 
+		label="AddressAddressid" id="lblAddressAddressid-#{idValue}" value="#{myGoodItemController.myGoodItem.addressAddressid}" required="true"/>
+	<p:message for="lblAddressAddressid-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_thisIsMyProduct} *</p:outputLabel>
+	<p:inputText 
+		size="10" maxlength="10" 
+		label="ThisIsMyProduct" id="lblThisIsMyProduct-#{idValue}" value="#{myGoodItemController.myGoodItem.thisIsMyProduct}" required="true"/>
+	<p:message for="lblThisIsMyProduct-#{idValue}" />
+
+	<p:outputLabel>#{i18n.myGoodItem_contactinfoContactinfoid} *</p:outputLabel>
+	<p:inputText 
+		size="11" maxlength="11" 
+		label="ContactinfoContactinfoid" id="lblContactinfoContactinfoid-#{idValue}" value="#{myGoodItemController.myGoodItem.contactinfoContactinfoid}" required="true"/>
+	<p:message for="lblContactinfoContactinfoid-#{idValue}" />
+					<p:commandButton title="#{i18n.save}" value="#{i18n.save}" update="createPnl"
+						action="#{myGoodItemController.create}" />
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+  </ui:composition>
+</html><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlCreateEntity
+	 - file name : JSFXhtmlCreateEntity.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

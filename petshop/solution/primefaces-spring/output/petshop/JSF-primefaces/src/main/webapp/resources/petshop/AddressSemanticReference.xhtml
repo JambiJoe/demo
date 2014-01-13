@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+    <composite:interface>
+        <composite:attribute name="entity" />
+    </composite:interface>
+    <composite:implementation>
+       <p:panelGrid columns="2" id="panel" cellpadding="5" styleClass="ui-widget-content-borderless" columnClasses="mp-column-center">
+        <p:outputLabel>#{i18n.address_street1}</p:outputLabel>
+        <p:inputText 
+        	size="40" 
+        	maxlength="55" 
+        	label="Street1"
+			disabled="true"
+        	value="#{cc.attrs.entity.street1}"/>
+
+        <p:outputLabel>#{i18n.address_street2}</p:outputLabel>
+        <p:inputText 
+        	size="40" 
+        	maxlength="55" 
+        	label="Street2"
+			disabled="true"
+        	value="#{cc.attrs.entity.street2}"/>
+
+        <p:outputLabel>#{i18n.address_city}</p:outputLabel>
+        <p:inputText 
+        	size="40" 
+        	maxlength="55" 
+        	label="City"
+			disabled="true"
+        	value="#{cc.attrs.entity.city}"/>
+
+        <p:outputLabel>#{i18n.address_state}</p:outputLabel>
+        <p:inputText 
+        	size="25" 
+        	maxlength="25" 
+        	label="State"
+			disabled="true"
+        	value="#{cc.attrs.entity.state}"/>
+
+        <p:outputLabel>#{i18n.address_zip}</p:outputLabel>
+        <p:inputText 
+        	size="5" 
+        	maxlength="5" 
+        	label="Zip"
+			disabled="true"
+        	value="#{cc.attrs.entity.zip}"/>
+
+        <p:outputLabel>#{i18n.address_latitude}</p:outputLabel>
+        <p:inputText 
+        	size="14" 
+        	maxlength="14" 
+        	label="Latitude"
+			disabled="true"
+        	value="#{cc.attrs.entity.latitude}"/>
+
+        <p:outputLabel>#{i18n.address_longitude}</p:outputLabel>
+        <p:inputText 
+        	size="14" 
+        	maxlength="14" 
+        	label="Longitude"
+			disabled="true"
+        	value="#{cc.attrs.entity.longitude}"/>
+
+       </p:panelGrid>
+	</composite:implementation>
+</html>
+<!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlEntitySemanticReference
+	 - file name : JSFXhtmlEntitySemanticReference.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

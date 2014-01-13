@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+  <ui:composition template="/_Decorator.xhtml">
+	<ui:define name="title">#{i18n.createTitle} Address</ui:define>
+	<ui:define name="heading">#{i18n.createHeading}</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<p:panel id="createPnl" header="#{i18n.address}"
+				toggleable="true" closable="false" toggleSpeed="500"
+				onCloseUpdate="growl" closeSpeed="2000" onToggleUpdate="growl"
+				widgetVar="panel">
+				<h:panelGrid columns="3" cellpadding="10">
+
+	<p:outputLabel>#{i18n.address_street1} *</p:outputLabel>
+	<p:inputText 
+		size="40" maxlength="55" 
+		label="Street1" id="lblStreet1-#{idValue}" value="#{addressController.address.street1}" required="true"/>
+	<p:message for="lblStreet1-#{idValue}" />
+
+	<p:outputLabel>#{i18n.address_street2}</p:outputLabel>
+	<p:inputText 
+		size="40" maxlength="55" 
+		label="Street2" id="lblStreet2-#{idValue}" value="#{addressController.address.street2}" required="false"/>
+	<p:message for="lblStreet2-#{idValue}" />
+
+	<p:outputLabel>#{i18n.address_city} *</p:outputLabel>
+	<p:inputText 
+		size="40" maxlength="55" 
+		label="City" id="lblCity-#{idValue}" value="#{addressController.address.city}" required="true"/>
+	<p:message for="lblCity-#{idValue}" />
+
+	<p:outputLabel>#{i18n.address_state} *</p:outputLabel>
+	<p:inputText 
+		size="25" maxlength="25" 
+		label="State" id="lblState-#{idValue}" value="#{addressController.address.state}" required="true"/>
+	<p:message for="lblState-#{idValue}" />
+
+	<p:outputLabel>#{i18n.address_zip} *</p:outputLabel>
+	<p:inputText 
+		size="5" maxlength="5" 
+		label="Zip" id="lblZip-#{idValue}" value="#{addressController.address.zip}" required="true"/>
+	<p:message for="lblZip-#{idValue}" />
+
+	<p:outputLabel>#{i18n.address_latitude} *</p:outputLabel>
+	<p:inputText 
+		size="14" maxlength="14" 
+		label="Latitude" id="lblLatitude-#{idValue}" value="#{addressController.address.latitude}" required="true"/>
+	<p:message for="lblLatitude-#{idValue}" />
+
+	<p:outputLabel>#{i18n.address_longitude} *</p:outputLabel>
+	<p:inputText 
+		size="14" maxlength="14" 
+		label="Longitude" id="lblLongitude-#{idValue}" value="#{addressController.address.longitude}" required="true"/>
+	<p:message for="lblLongitude-#{idValue}" />
+					<p:commandButton title="#{i18n.save}" value="#{i18n.save}" update="createPnl"
+						action="#{addressController.create}" />
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+  </ui:composition>
+</html><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlCreateEntity
+	 - file name : JSFXhtmlCreateEntity.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

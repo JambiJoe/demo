@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+<!--MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @JPApetshopFactory-petshop@-->
+    <!-- hibernate config to put in an appart config file-->
+    <bean id="JPApetshopFactory" autowire="byName"
+        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<!-- all connection information are retrieve from the persistence file-->
+		<!--
+			<property name="dataSource" ref="..."/>
+			<property name="persistenceUnitName" value="..."/>
+		-->
+        <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+    </bean>
+<!--MP-MANAGED-UPDATABLE-ENDING-->
+
+    <!-- dao packages -->
+    <context:component-scan base-package="net.sf.mp.demo.petshop.dao.impl.jpa"/>
+    <context:component-scan base-package="net.sf.mp.demo.petshop.dao.sdd.impl"/>
+    <!-- Database -->
+    <import resource="classpath:net/sf/mp/demo/petshop/factory/spring/spring-config-Petshop-database.xml"/>    
+
+</beans>
+
+<!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : BslaSpringConfigMainBackend
+	 - file name : BslaSpringConfigMainJPA2.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

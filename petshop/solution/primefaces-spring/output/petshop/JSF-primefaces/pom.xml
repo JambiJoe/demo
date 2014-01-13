@@ -1,0 +1,221 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+  	<groupId>net.sf.mp.demo.petshop</groupId>
+  	<artifactId>petshopJSF</artifactId>
+  	<packaging>war</packaging>
+  	<version>1.0-SNAPSHOT</version>
+  	<name>petshopBackEnd JSF front end</name>
+    <url>http://maven.apache.org</url>	
+
+	<dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+			<scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.mp.demo.petshop</groupId>
+            <artifactId>petshopBsla</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>	
+    	<!-- spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+			<scope>provided</scope>
+		</dependency>
+	   <dependency>
+	     <groupId>javax</groupId>
+	     <artifactId>javaee-api</artifactId>
+	     <version>6.0</version>
+	     <scope>provided</scope>
+	   </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>el-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+          </dependency>
+        
+          <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>el-impl</artifactId>
+            <version>2.2</version>
+            <!--<scope>provided</scope> for tomcat -->
+          </dependency>
+
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>cupertino</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.2.4</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.2.4</version>
+			<scope>runtime</scope>
+		</dependency>	
+	  
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<compilerArguments>
+						<endorseddirs>${endorsed.dir}</endorseddirs>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+<!--MP-MANAGED-UPDATABLE-BEGINNING-DISABLE @plugin-org.apache.maven.plugins-petshop@-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+<!--MP-MANAGED-UPDATABLE-ENDING-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.1</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${endorsed.dir}</outputDirectory>
+							<silent>true</silent>
+							<artifactItems>
+								<artifactItem>
+									<groupId>javax</groupId>
+									<artifactId>javaee-endorsed-api</artifactId>
+									<version>6.0</version>
+									<type>jar</type>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<configuration>
+					<ejbVersion>3.1</ejbVersion>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		    <plugin>
+		        <groupId>org.mortbay.jetty</groupId>
+		        <artifactId>maven-jetty-plugin</artifactId>
+		        <version>6.1.10</version>
+		        <configuration>
+		          <scanIntervalSeconds>10</scanIntervalSeconds>
+		          <connectors>
+		            <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+		              <port>8080</port>
+		              <maxIdleTime>60000</maxIdleTime>
+		            </connector>
+		          </connectors>
+		        </configuration>
+		    </plugin>				
+		</plugins>
+		<finalName>petshopApp</finalName>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+        <repository>
+            <id>spring-maven-snapshot</id>
+            <name>Springframework Maven Snapshot Repository</name>
+            <url>http://maven.springframework.org/snapshot</url>
+            <snapshots>
+               <enabled>true</enabled>
+            </snapshots>
+        </repository>
+		<repository>
+			<id>primefaces-repo</id>
+			<name>Prime Technology Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+	<properties>
+		<spring-security.version>3.1.0.CI-SNAPSHOT</spring-security.version>
+		<spring.version>3.0.6.BUILD-SNAPSHOT</spring.version>
+		<cglib.version>2.2.2</cglib.version>
+		<junit.version>4.10</junit.version>
+		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+	</properties>
+</project>
+<!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : PomXml.JSF
+	 - file name : PomXml.JSF.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

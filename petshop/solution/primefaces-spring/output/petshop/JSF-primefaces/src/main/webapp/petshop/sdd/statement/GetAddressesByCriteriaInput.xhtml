@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/_Decorator.xhtml">
+	<ui:define name="title">#{i18n.manageSddTitle} for #{i18n.getAddressesByCriteriaIn}</ui:define>
+	<ui:define name="heading">#{i18n.getAddressesByCriteriaIn}</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<p:panel id="sddInputPanel" header="#{i18n.getAddressesByCriteriaIn}"
+				toggleable="true" closable="false" toggleSpeed="500"
+				onCloseUpdate="growl" closeSpeed="2000" onToggleUpdate="growl"
+				widgetVar="panel">
+				<p:messages id="messages" />
+				<h:panelGrid columns="3" cellpadding="10">
+
+
+	<p:outputLabel>#{i18n.getAddressesByCriteriaIn_city} *</p:outputLabel>
+	<p:inputTextarea rows="5" cols="60" maxlength="255" width="255" 
+        counterTemplate="{0} characters remaining." autoResize="false"
+		label="City" id="lblCity-#{idValue}" value="#{getAddressesByCriteriaController.getAddressesByCriteriaIn.city}" required="true"/>
+	<p:message for="lblCity-#{idValue}" />
+
+
+
+                <p:commandButton title="#{i18n.execute}" value="#{i18n.execute}" update="sddInputPanel,display"
+                    action="#{getAddressesByCriteriaController.execute}" />
+                </h:panelGrid>
+            </p:panel>
+            <p:panel id="display" header="Information" style="margin-top:10px;">
+            <p:dataTable var="getAddressesByCriteriaOut" value="#{getAddressesByCriteriaController.getOutputList()}" paginator="true" rows="10"  
+                        selection="#{getAddressesByCriteriaController.selectedGetAddressesByCriteriaOut}" 
+                        selectionMode="single" rowKey="#{getAddressesByCriteriaOut}"
+                        onRowSelectUpdate="display" 
+                        dynamic="true"  resizableColumns="true"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                        rowsPerPageTemplate="5,10,15"> 
+                <f:facet name="header">  
+                    List of #{i18n.getAddressesByCriteriaOut}  
+                </f:facet>  
+                <p:column style="width:16px">  
+                    <p:rowToggler/>  
+                </p:column>
+                <p:column sortBy="#{getAddressesByCriteriaOut.addressid}" filterBy="#{getAddressesByCriteriaOut.addressid}">  
+                    <f:facet name="header">  
+                        <h:outputText value="#{i18n.getAddressesByCriteriaOut_addressid}" />  
+                    </f:facet>  
+                    <h:outputText value="#{getAddressesByCriteriaOut.addressid}" />  
+                </p:column>  
+                <p:column sortBy="#{getAddressesByCriteriaOut.street1}" filterBy="#{getAddressesByCriteriaOut.street1}">  
+                    <f:facet name="header">  
+                        <h:outputText value="#{i18n.getAddressesByCriteriaOut_street1}" />  
+                    </f:facet>  
+                    <h:outputText value="#{getAddressesByCriteriaOut.street1}" />  
+                </p:column>  
+                <p:column sortBy="#{getAddressesByCriteriaOut.street2}" filterBy="#{getAddressesByCriteriaOut.street2}">  
+                    <f:facet name="header">  
+                        <h:outputText value="#{i18n.getAddressesByCriteriaOut_street2}" />  
+                    </f:facet>  
+                    <h:outputText value="#{getAddressesByCriteriaOut.street2}" />  
+                </p:column>  
+                <p:column sortBy="#{getAddressesByCriteriaOut.city}" filterBy="#{getAddressesByCriteriaOut.city}">  
+                    <f:facet name="header">  
+                        <h:outputText value="#{i18n.getAddressesByCriteriaOut_city}" />  
+                    </f:facet>  
+                    <h:outputText value="#{getAddressesByCriteriaOut.city}" />  
+                </p:column>  
+                <p:column sortBy="#{getAddressesByCriteriaOut.state}" filterBy="#{getAddressesByCriteriaOut.state}">  
+                    <f:facet name="header">  
+                        <h:outputText value="#{i18n.getAddressesByCriteriaOut_state}" />  
+                    </f:facet>  
+                    <h:outputText value="#{getAddressesByCriteriaOut.state}" />  
+                </p:column>  
+                <p:column sortBy="#{getAddressesByCriteriaOut.zip}" filterBy="#{getAddressesByCriteriaOut.zip}">  
+                    <f:facet name="header">  
+                        <h:outputText value="#{i18n.getAddressesByCriteriaOut_zip}" />  
+                    </f:facet>  
+                    <h:outputText value="#{getAddressesByCriteriaOut.zip}" />  
+                </p:column>  
+                <p:column sortBy="#{getAddressesByCriteriaOut.latitude}" filterBy="#{getAddressesByCriteriaOut.latitude}">  
+                    <f:facet name="header">  
+                        <h:outputText value="#{i18n.getAddressesByCriteriaOut_latitude}" />  
+                    </f:facet>  
+                    <h:outputText value="#{getAddressesByCriteriaOut.latitude}" />  
+                </p:column>  
+                <p:column sortBy="#{getAddressesByCriteriaOut.longitude}" filterBy="#{getAddressesByCriteriaOut.longitude}">  
+                    <f:facet name="header">  
+                        <h:outputText value="#{i18n.getAddressesByCriteriaOut_longitude}" />  
+                    </f:facet>  
+                    <h:outputText value="#{getAddressesByCriteriaOut.longitude}" />  
+                </p:column>  
+                </p:dataTable>  
+            </p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlSDDInput
+	 - file name : JSFXhtmlSDDInput.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->

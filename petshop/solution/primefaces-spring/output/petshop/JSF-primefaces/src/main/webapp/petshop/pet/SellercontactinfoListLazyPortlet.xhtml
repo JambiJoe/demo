@@ -1,0 +1,190 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+ <h:form id="formSellercontactinfo"> 
+     <p:growl id="growl" showDetail="true"/>
+     <h:panelGroup id="dataPanel">  
+        <p:dataTable value="#{sellercontactinfoController.lazyModel}" 
+            id="sellercontactinfoTable" 
+            var="item" 
+            paginator="true" rows="10" 
+            lazy="true"
+			selection="#{sellercontactinfoController.selectedSellercontactinfo}" selectionMode="single"
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+            rowsPerPageTemplate="10,20,50"
+			emptyMessage="No Sellercontactinfo found with given criteria"> 
+            <p:ajax partialSubmit="true" event="rowSelect"
+                    listener="#{sellercontactinfoController.onRowSelect}"
+                    update=":form2:panel :form2:childrenTab"/> 
+            <f:facet name="header">  
+                List of #{i18n.sellercontactinfos}  
+            </f:facet>
+            <ui:include src="/petshop/pet/SellercontactinfoListRow.xhtml">
+               <ui:param name="isSemanticReference" value="false" />
+             </ui:include>
+        </p:dataTable>
+    </h:panelGroup>
+   </h:form>        
+
+	<p:confirmDialog id="confirmDialog" showEffect="fade" hideEffect="fade" global="true" >
+		<h:form id="deletion">
+			<p:commandButton id="confirm" value="Yes" immediate="true" 
+				styleClass="ui-confirmdialog-yes" 
+				icon="ui-icon-check"
+				actionListener="#{sellercontactinfoController.deleteListener}" update=":formSellercontactinfo:sellercontactinfoTable,:form2:panel,:form2:childrenTab,:formSellercontactinfo:growl" />
+			<p:commandButton id="decline" value="No" type="button" 
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" /> 
+	   </h:form>
+	</p:confirmDialog>
+
+  	<h:form id="form2">
+		<p:panelGrid columns="3" id="panel" cellpadding="5" styleClass="ui-widget-content-borderless" columnClasses="mp-column-center">
+            <f:facet name="header" align="left">
+                <h:outputText value="#{i18n.sellercontactinfo} details " />
+            	<p:commandButton value="Save" icon="ui-icon-check"  actionListener="#{sellercontactinfoController.createOrUpdateListener}" update=":formSellercontactinfo:sellercontactinfoTable,:form2:panel,:form2:childrenTab,:formSellercontactinfo:growl" />  
+            	<p:commandButton value="Clear" immediate="true" icon="ui-icon-cancel" process="@this" actionListener="#{sellercontactinfoController.clearListener}" update=":form2:panel,:form2:childrenTab" style="margin:5px;"/>
+            	<p:commandButton value="Delete" icon="ui-icon-trash" >
+                    <p:confirm header="Deletion process" severity="alert" icon="ui-icon-alert" message="Can you confirm your deletion?"/>
+                </p:commandButton>
+            </f:facet>
+            <ui:include src="/petshop/pet/SellercontactinfoEdit.xhtml">
+               <ui:param name="affectFormId" value=":form2" />
+               <ui:param name="idValue" value="1" />
+            </ui:include>
+        </p:panelGrid>
+		<h:panelGrid id="childrenPanel">
+           <p:tabView id="childrenTab" orientation="top|bottom|left|right" cache="false" > 
+             <p:ajax event="tabChange" listener="#{sellercontactinfoController.onTabChange}"/>
+                   <p:tab id="child-myGoodItems" title="#{i18n.myGoodItem}" > 
+                	 <p:outputPanel id="child-myGoodItemsPanel" >
+                		<p:toolbar id="add-myGoodItems">  
+                			<p:toolbarGroup align="left"> 
+                				<p:commandButton 
+                                    immediate="true" 
+									title="Add item"  
+									icon="ui-icon-document" 
+									oncomplete="addMyGoodItems.show();" 
+									update=":containerBasicAddMyGoodItems">
+									<f:actionListener binding="#{sellercontactinfoController.activateRenderAddMyGoodItems()}" />
+									<f:actionListener binding="#{myGoodItemController.resetSelectedMyGoodItem()}"/>
+                                </p:commandButton>
+							</p:toolbarGroup>
+                		</p:toolbar>
+                        <p:dataTable var="item" 
+							    value="#{sellercontactinfoController.getMyGoodItems()}" 
+							    paginator="true" rows="10"  
+                                onRowSelectUpdate="display" 
+                                dynamic="true"  resizableColumns="true"
+                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                rowsPerPageTemplate="5,10,15"> 
+							<f:facet name="header">  
+                            List of #{i18n.myGoodItem}  
+							</f:facet>
+							<ui:include src="/petshop/product/MyGoodItemListRow.xhtml">
+								<ui:param name="isSemanticReference" value="true" />
+							</ui:include>
+							<p:column>
+                            <p:commandButton value="Manage" 
+            					id="detailButtonMyGoodItems" 
+            					update=":containerBasicDialogMyGoodItems" 
+            					title="Manage Details"
+            					action="#{myGoodItemController.reloadSelected}"
+            					oncomplete="detailDialogMyGoodItems.show()" 
+            					process="@this">
+                                <f:actionListener binding="#{sellercontactinfoController.activateRenderDialogMyGoodItems()}" />
+                                <f:actionListener binding="#{myGoodItemController.setSelectedMyGoodItem(item)}"/>
+                            </p:commandButton>
+							</p:column>
+						</p:dataTable>
+                	 </p:outputPanel>
+                   </p:tab>
+			</p:tabView>
+		</h:panelGrid>
+	</h:form>
+
+
+    <!-- dialog to add and manage MyGoodItems -->
+	<p:outputLabel id="containerBasicAddMyGoodItems">
+		<p:dialog id="basicAddMyGoodItems" 
+			rendered="#{sellercontactinfoController.isRenderAddMyGoodItems()}"
+			header="Add MyGoodItem" 
+			widgetVar="addMyGoodItems" 
+			resizable="true" >
+			<h:form id="formAddmyGoodItems">
+				<h:panelGrid columns="3" cellpadding="5" id="addMyGoodItems">
+					<ui:include src="/petshop/product/MyGoodItemEdit.xhtml">
+						<ui:param name="affectFormId" value=":formAddmyGoodItems" />
+						<ui:param name="idValue" value="2" />
+						<ui:param name="fieldToHide" value="contactinfoContactinfoid" />
+					</ui:include>
+            </h:panelGrid>			
+				<p:commandButton action="#{myGoodItemController.createOrUpdateListener}" id="cmdAddMyGoodItems" value="Add" icon="ui-icon-check" oncomplete="addMyGoodItems.hide()" update=":form2:childrenTab:child-myGoodItemsPanel,:formSellercontactinfo:growl">
+					<f:setPropertyActionListener 
+						target="#{myGoodItemController.selectedMyGoodItem.contactinfoContactinfoid}" 
+						value="#{sellercontactinfoController.selectedSellercontactinfo}"/>
+					<f:setPropertyActionListener 
+						target="#{myGoodItemController.selectedMyGoodItem.contactinfoContactinfoid_}" 
+						value="#{sellercontactinfoController.selectedSellercontactinfo.contactinfoid}"/>
+					<f:setPropertyActionListener 
+						target="#{sellercontactinfoController.refreshMyGoodItems}" value="true"/>
+				</p:commandButton>	
+			</h:form>
+		</p:dialog>
+	</p:outputLabel>
+	<p:outputLabel id="containerBasicDialogMyGoodItems">
+		<p:dialog id="basicDialogMyGoodItems" 
+			rendered="#{sellercontactinfoController.isRenderDialogMyGoodItems()}"
+			header="#{myGoodItems} Details" 
+			widgetVar="detailDialogMyGoodItems" 
+			resizable="true" >  
+			<h:form id="formMyGoodItems">
+    			<h:panelGrid columns="3" cellpadding="5" id="displayMyGoodItems">
+    			<ui:include src="/petshop/product/MyGoodItemEdit.xhtml">
+    				<ui:param name="affectFormId" value=":formMyGoodItems" />
+                    <ui:param name="idValue" value="3" />
+    				<ui:param name="fieldToHide" value="contactinfoContactinfoid" />
+                </ui:include>
+                </h:panelGrid>
+    			<p:commandButton actionListener="#{myGoodItemController.createOrUpdateListener}" id="cmdUpdateMyGoodItems" value="Update" icon="ui-icon-check" oncomplete="detailDialogMyGoodItems.hide()" update=":form2:childrenTab:child-myGoodItemsPanel,:formSellercontactinfo:growl">
+    				<f:setPropertyActionListener target="#{sellercontactinfoController.refreshMyGoodItems}" value="true"/>
+    				<!-- todo add reset DD lookup -->
+                </p:commandButton>
+    			<p:commandButton actionListener="#{myGoodItemController.deleteListener}" id="cmdDeleteMyGoodItems" value="Delete" icon="ui-icon-trash" process="@this" oncomplete="detailDialogMyGoodItems.hide()" update=":form2:childrenTab:child-myGoodItemsPanel,:formSellercontactinfo:growl">
+    				<f:setPropertyActionListener target="#{sellercontactinfoController.refreshMyGoodItems}" value="true"/>
+                </p:commandButton>
+				<p:commandButton value="Cancel" onclick="detailDialogMyGoodItems.hide()"/>
+			</h:form>
+		</p:dialog>
+	</p:outputLabel>
+
+
+</html><!--
+	 Copyright (c) minuteproject, minuteproject@gmail.com
+	 All rights reserved.
+	 
+	 Licensed under the Apache License, Version 2.0 (the "License")
+	 you may not use this file except in compliance with the License.
+	 You may obtain a copy of the License at
+	 
+	 http://www.apache.org/licenses/LICENSE-2.0
+	 
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+	 
+	 More information on minuteproject:
+	 twitter @minuteproject
+	 wiki http://minuteproject.wikispaces.com 
+	 blog http://minuteproject.blogspot.net
+	 
+-->
+<!--
+	 template reference : 
+	 - name      : JSFXhtmlListLazyEntityPortlet
+	 - file name : JSFXhtmlListLazyEntityPortlet.vm
+	 - time      : 2014/01/11 ap. J.-C. at 23:51:21 CET
+-->
